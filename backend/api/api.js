@@ -32,19 +32,45 @@ let tomb = [ {
     kerdes: "Ki vagy",
     valasz1: "Te",
     valasz2: "én",
-    jovalasz: valasz1
+    jovalasz: 1
 }]
 
 router.post('/hozzaad', (request, response)=>{
-    if(kerdesid != request.body.kerdesid){
-        tomb.push(request.body)
+    let max = 0;
+    for (let i = 1; i < tomb.length;i++){
+        if(tomb[i].kerdesid > tomb[maxi].kerdesid){
+            max = i
+        }
     }
+    tomb.push({kerdesid: tomb[max]+1,
+    kerdes: request.body.kerdes,
+    valasz1: request.body.valasz1,
+    valasz2: request.body.valasz2,
+    jovalasz:request.body.jovalasz
+})
+    
     response.status(200).json({
         tomb:tomb,
         message:"Működik"
 
     })
 
+})
+
+router.get('/kerdes', (request, response)=>{
+    response.status(200).json({
+        kerdes1 : tomb[1],
+        valasz1 : tomb[2],
+        valasz2 : tomb[3]
+    })
+    
+})
+
+router.get('/valasz', (request,response)=>{
+    
+    response.status(200).json({
+        helyesvalasz: tomb[`${tomb[4]}`]
+    })
 })
 
 

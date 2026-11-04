@@ -27,6 +27,9 @@ app.use(
 router.get('/', (request, response) => {
     response.sendFile(path.join(__dirname, '../frontend/html/index.html'));
 });
+router.get('/oldal', (request, response) => {
+    response.sendFile(path.join(__dirname, '../frontend/html/index2.html'));
+});
 
 //!API endpoints
 app.use('/', router);
